@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "extensionPath": "/pages/block_page_hard.html"
+            }
+        },
+        "condition": {
+            "urlFilter": "||kongregate.com",
+            "resourceTypes": ["main_frame"]
+        }
+    }
+]
