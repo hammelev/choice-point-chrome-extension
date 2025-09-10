@@ -45,3 +45,6 @@ Thumbs.db
 
 # Chrome specific
 _metadata/
+
+# Gemini file
+GEMINI.md

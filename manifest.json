@@ -16,15 +16,7 @@
     "background": {
         "service_worker": "background.js"
     },
-    "declarative_net_request": {
-        "rule_resources": [
-            {
-                "id": "ruleset_1",
-                "enabled": true,
-                "path": "rules.json"
-            }
-        ]
-    },
+    "options_page": "pages/options.html",
     "web_accessible_resources": [
         {
             "resources": [ "pages/block_page_hard.html" ],
