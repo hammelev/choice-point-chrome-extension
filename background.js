@@ -53,7 +53,7 @@ const getStorageData = async () => {
  * @param {object} oldUuidToRuleIdMap - The old mapping of UUIDs to rule IDs.
  * @param {number} nextRuleId - The next available rule ID.
  * @param {Set<number>} currentRuleIds - A set of the current rule IDs.
- * @returns {object} An object containing the rules to add, the rules to remove, and the new UUID to rule ID map.
+ * @returns {object} An object containing the rules to add, the rules to remove, the new UUID to rule ID map, and the next available rule ID.
  */
 const calculateRuleChanges = (desiredWebsites, oldUuidToRuleIdMap, nextRuleId, currentRuleIds) => {
     const rulesToAdd = [];
