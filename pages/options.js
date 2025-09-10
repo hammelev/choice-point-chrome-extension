@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render blocked websites in the UI
     const renderBlockedWebsites = (websites) => {
-        blockedWebsitesList.innerHTML = '';
+        blockedWebsitesList.replaceChildren();
         websites.forEach((item) => {
             const listItem = document.createElement('li');
             listItem.textContent = item.url; // Display the URL
