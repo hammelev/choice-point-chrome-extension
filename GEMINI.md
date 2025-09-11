@@ -52,8 +52,12 @@ Commands to manage version control and integrate with the GitHub repository.
     -   **Clarity:** This ensures every commit is deliberate and well-documented.
 
 -   `Create pull request`
-    -   **Purpose:** After committing changes to a feature branch, this command initiates the process of creating a pull request on GitHub.
-    -   **Elaboration:** The tool would ask for a title and body for the pull request, potentially pre-filling them with information from the commit history or a linked feature draft. It would then create the PR, linking the work back to the central repository for review.
+    -   **Purpose:** Pushes a feature branch to the remote repository and creates a pull request on GitHub to merge it into the main branch.
+    -   **Workflow:**
+        1.  The command will first push the current branch and its commits to the remote repository (e.g., GitHub).
+        2.  It will then prompt for a title and body for the pull request, suggesting defaults based on commit history.
+        3.  Finally, it will create the pull request.
+    -   **Prerequisite:** This command should be run after you have committed all your changes to the feature branch.
 
 -   `Abandon branch`
     -   **Purpose:** Deletes the current local branch, switches to the `main` branch, and pulls the latest changes from the remote.
