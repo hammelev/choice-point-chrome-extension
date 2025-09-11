@@ -16,7 +16,7 @@ The following commands can be used to interact with Gemini for this project:
 
 -   `Create feature draft: {description}`
     -   Creates a feature draft for a GitHub issue using the `feature.md` template.
-        -   For any sections in `feature.md` stated as optional only if them if it make sense. If they are added remove the '(optional)' tag.
+        -   For any sections in `feature.md` stated as optional, only include them if it makes sense. If they are added, remove the '(optional)' tag.
     -   The draft will include a title and a body.
     -   Gemini will perform the checklist steps in `feature.md`, report the results, and mark them as complete.
     -   No GitHub issue will be created at this stage.
