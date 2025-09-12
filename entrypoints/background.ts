@@ -100,7 +100,7 @@ const calculateRuleChanges = (
 const applyRuleChanges = async (rulesToAdd: Array<chrome.declarativeNetRequest.Rule>, ruleIdsToRemove: Array<number>, newUuidToRuleIdMap: uuidToRuleIdMapType, nextRuleId: number) => {
   try {
     if (rulesToAdd.length > 0 || ruleIdsToRemove.length > 0) {
-      chrome.declarativeNetRequest.updateDynamicRules({
+      await chrome.declarativeNetRequest.updateDynamicRules({
         removeRuleIds: ruleIdsToRemove,
         addRules: rulesToAdd
       });
