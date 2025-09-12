@@ -1,6 +1,6 @@
 {
   "name": "Choice Point",
-  "description": "manifest.json description",
+  "description": "A Chrome extension to help you stay focused by blocking distracting websites.",
   "private": true,
   "version": "0.0.1",
   "type": "module",
