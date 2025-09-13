@@ -32,7 +32,7 @@ export default defineBackground(() => {
 
   /**
    * Fetches data from chrome.storage.
-   * @returns {Promise<{desiredWebsites: blockedWebsitesListType, oldUuidToRuleIdMap: uuidToRuleIdMapType ,nextRuleId: number}>} A promise that resolves with the storage data.
+   * @returns {Promise<{desiredWebsites: BlockedWebsite[], oldUuidToRuleIdMap: uuidToRuleIdMapType ,nextRuleId: number}>} A promise that resolves with the storage data.
    */
   const getStorageData = async (): Promise<{ desiredWebsites: BlockedWebsite[], oldUuidToRuleIdMap: uuidToRuleIdMapType, nextRuleId: number }> => {
     try {
