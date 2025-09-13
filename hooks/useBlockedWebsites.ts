@@ -28,13 +28,9 @@ export default function useBlockedWebsites() {
             }
         };
 
-        loadBlockedWebsites();
-    }, []);
-
-    useEffect(() => {
         /**
          * Handles changes in Chrome storage and updates the local state.
-         * @param {object} changes - The changes in storage.
+         * @param {{ [key: string]: chrome.storage.StorageChange }} changes - The changes in storage.
          * @param {string} namespace - The storage area (e.g., 'sync', 'local').
          * @returns {void}
          */
@@ -45,11 +41,11 @@ export default function useBlockedWebsites() {
         };
 
         chrome.storage.onChanged.addListener(handleStorageChange);
+        loadBlockedWebsites();
 
         return () => {
             chrome.storage.onChanged.removeListener(handleStorageChange);
         };
-
     }, []);
 
     /**
