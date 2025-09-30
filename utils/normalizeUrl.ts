@@ -3,7 +3,7 @@ export const normalizeUrl = (url: string): string => {
   try {
     const fullUrl = url.includes('://') ? url : `https://${url}`;
     const urlObj = new URL(fullUrl);
-    const host = urlObj.hostname.replace(/^www\./, '');
+    const host = urlObj.hostname.replace(/^www\./, '').replace(/\.$/, '');
     const pathname = urlObj.pathname.replace(/\/$/, '');
     return host + pathname;
   } catch (e) {
