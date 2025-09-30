@@ -5,9 +5,11 @@
  * @returns {boolean} True if the URL is valid, false otherwise.
  */
 export const isValidUrl = (url: string): boolean => {
+    if (!url) return false;
     try {
-        new URL(`http://${url}`);
-        return true;
+        const urlObj = new URL(url.includes('://') ? url : `http://${url}`);
+        // Check if the hostname contains a dot, which is a good indicator of a valid domain.
+        return urlObj.hostname.includes('.');
     } catch (_) {
         return false;
     }

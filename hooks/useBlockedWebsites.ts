@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { isValidUrl } from '~/utils/validation';
 import { BlockedWebsite } from "~/utils/types";
 import useFeedback from "~/hooks/useFeedback";
+import { normalizeUrl } from '~/utils/normalizeUrl';
 
 /**
  * Custom React Hook for managing blocked websites.
@@ -64,13 +65,15 @@ export default function useBlockedWebsites() {
             return null;
         }
 
+        const normalizedUrl = normalizeUrl(websiteUrl);
+
         try {
             const result = await chrome.storage.sync.get(['blockedWebsites']);
             const currentWebsites: BlockedWebsite[] = result.blockedWebsites || [];
-            const exists = currentWebsites.some(item => item.url === websiteUrl);
+            const exists = currentWebsites.some(item => item.url === normalizedUrl);
 
             if (!exists) {
-                const newWebsite: BlockedWebsite = { uuid: crypto.randomUUID(), url: websiteUrl };
+                const newWebsite: BlockedWebsite = { uuid: crypto.randomUUID(), url: normalizedUrl };
                 const newWebsites = [...currentWebsites, newWebsite];
                 await chrome.storage.sync.set({ blockedWebsites: newWebsites });
                 showFeedback('Website added successfully!');
