@@ -17,18 +17,26 @@ export default defineBackground(() => {
    * @param {string} url - The URL to block.
    * @returns {object} The declarativeNetRequest rule object.
    */
-  const createRuleObject = (id: number, url: string): chrome.declarativeNetRequest.Rule => ({
-    id,
-    priority: 1,
-    action: {
-      type: 'redirect',
-      redirect: { url: BLOCK_PAGE_URL }
-    },
-    condition: {
-      urlFilter: `||${url}/`,
-      resourceTypes: ['main_frame']
-    }
-  });
+  const createRuleObject = (id: number, url: string): chrome.declarativeNetRequest.Rule => {
+    // Escape the URL for use in the regular expression.
+    const escapedUrl = url.replace(/[-/\\^$*+?.()|\[\]{}]/g, '\\$&');
+
+    // This regex matches the domain (with or without www.) and the specific path.
+    const regexFilter = `^https?://(www\\.)?${escapedUrl}`;
+
+    return {
+      id,
+      priority: 1,
+      action: {
+        type: 'redirect',
+        redirect: { url: BLOCK_PAGE_URL }
+      },
+      condition: {
+        regexFilter,
+        resourceTypes: ['main_frame']
+      }
+    };
+  };
 
   /**
    * Fetches data from chrome.storage.
@@ -88,7 +96,7 @@ export default defineBackground(() => {
     return { rulesToAdd, ruleIdsToRemove, newUuidToRuleIdMap, nextRuleId };
   };
 
-  
+
 
   /**
    * Applies the changes to the declarativeNetRequest rules and updates local storage.
