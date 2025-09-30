@@ -7,7 +7,8 @@ export const normalizeUrl = (url: string): string => {
     const pathname = urlObj.pathname.replace(/\/$/, '');
     return host + pathname;
   } catch (e) {
-    // Fallback for invalid URLs, which should have been caught by isValidUrl
-    return url.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
+    // Fallback for invalid URLs, which should have been caught by isValidUrl.
+    console.warn(`Unexpected error during URL normalization for \"${url}\". Returning original.`, e);
+    return url;
   }
 };
