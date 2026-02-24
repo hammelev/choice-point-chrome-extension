@@ -1,0 +1,96 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 300px;
+  background-color: #ffffff;
+}
+
+.popup-container {
+  width: 300px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #0056b3;
+}
+
+.status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.current-url {
+  font-size: 0.9rem;
+  color: #495057;
+  word-break: break-all;
+  margin: 0;
+  max-height: 3.6em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.action-btn {
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.block-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.block-btn:hover {
+  background-color: #0056b3;
+}
+
+.unblock-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.unblock-btn:hover {
+  background-color: #bd2130;
+}
+
+.footer-section {
+  border-top: 1px solid #dee2e6;
+  padding-top: 12px;
+}
+
+.options-btn {
+  background-color: transparent;
+  color: #6c757d;
+  border: 1px solid #6c757d;
+  width: 100%;
+  padding: 8px;
+}
+
+.options-btn:hover {
+  background-color: #6c757d;
+  color: white;
+}

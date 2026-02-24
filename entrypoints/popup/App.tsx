@@ -1,33 +1,85 @@
-import { useState } from 'react';
-import reactLogo from '@/assets/react.svg';
-import './App.css';
+import { useMemo, useCallback } from 'react';
+import useBlockedWebsites from "~/hooks/useBlockedWebsites";
+import useCurrentTab from "~/hooks/useCurrentTab";
+import { normalizeUrl } from "~/utils/normalizeUrl";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { blockedWebsites, addWebsite, removeWebsite } = useBlockedWebsites();
+  const currentTab = useCurrentTab();
+
+  const currentUrl = currentTab?.url || '';
+
+  const normalizedCurrentUrl = useMemo(() =>
+    currentUrl ? normalizeUrl(currentUrl) : ''
+  , [currentUrl]);
+
+  const currentBlockedSite = useMemo(() => {
+    if (!normalizedCurrentUrl) return undefined;
+    // Find a rule that matches the current URL.
+    // A rule matches if the current URL is an exact match or a sub-path of the blocked URL.
+    return blockedWebsites.find(site =>
+      normalizedCurrentUrl === site.url || normalizedCurrentUrl.startsWith(site.url + '/')
+    );
+  }, [blockedWebsites, normalizedCurrentUrl]);
+
+  const isBlocked = !!currentBlockedSite;
+
+  const handleToggleBlock = useCallback(async () => {
+    if (isBlocked && currentBlockedSite) {
+      await removeWebsite(currentBlockedSite.uuid);
+    } else if (normalizedCurrentUrl) {
+      await addWebsite(normalizedCurrentUrl);
+    }
+  }, [isBlocked, currentBlockedSite, normalizedCurrentUrl, removeWebsite, addWebsite]);
+
+  const handleOpenOptions = useCallback(() => {
+    chrome.runtime.openOptionsPage();
+  }, []);
+
+  const isBlockable = useMemo(() =>
+    !!currentUrl &&
+    !currentUrl.startsWith('chrome://') &&
+    !currentUrl.startsWith('about:') &&
+    !currentUrl.startsWith('chrome-extension://')
+  , [currentUrl]);
+
+  if (currentTab === undefined) {
+    return (
+      <div className="popup-container">
+        <h1>Choice Point</h1>
+        <div className="status-section">
+          <p>Loading current tab...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://wxt.dev" target="_blank" rel="noopener noreferrer">
-          Hello
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="popup-container">
+      <h1>Choice Point</h1>
+
+      <div className="status-section">
+        {isBlockable ? (
+          <>
+            <p className="current-url" title={currentUrl}>{normalizedCurrentUrl}</p>
+            <button
+              className={`action-btn ${isBlocked ? 'unblock-btn' : 'block-btn'}`}
+              onClick={handleToggleBlock}
+            >
+              {isBlocked ? 'Unblock this site' : 'Block this site'}
+            </button>
+          </>
+        ) : (
+          <p>This page cannot be blocked.</p>
+        )}
       </div>
-      <h1>WXT + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+
+      <div className="footer-section">
+        <button className="options-btn" onClick={handleOpenOptions}>
+          Open Options
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the WXT and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
