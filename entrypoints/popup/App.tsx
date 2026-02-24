@@ -13,9 +13,14 @@ function App() {
     currentUrl ? normalizeUrl(currentUrl) : ''
   , [currentUrl]);
 
-  const currentBlockedSite = useMemo(() =>
-    normalizedCurrentUrl ? blockedWebsites.find(site => site.url === normalizedCurrentUrl) : undefined
-  , [blockedWebsites, normalizedCurrentUrl]);
+  const currentBlockedSite = useMemo(() => {
+    if (!normalizedCurrentUrl) return undefined;
+    // Find a rule that matches the current URL.
+    // A rule matches if the current URL is an exact match or a sub-path of the blocked URL.
+    return blockedWebsites.find(site =>
+      normalizedCurrentUrl === site.url || normalizedCurrentUrl.startsWith(site.url + '/')
+    );
+  }, [blockedWebsites, normalizedCurrentUrl]);
 
   const isBlocked = !!currentBlockedSite;
 

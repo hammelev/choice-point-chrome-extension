@@ -21,9 +21,13 @@ export default function useCurrentTab() {
     fetchCurrentTab();
 
     const handleActivated = () => fetchCurrentTab();
-    const handleUpdated = (_tabId: number, changeInfo: chrome.tabs.OnUpdatedInfo) => {
-      if (changeInfo.status === 'complete' || changeInfo.url) {
-        fetchCurrentTab();
+    const handleUpdated = (tabId: number, changeInfo: chrome.tabs.OnUpdatedInfo) => {
+      // Only re-fetch if the updated tab is the one we are tracking,
+      // or if we don't have a tracked tab yet.
+      if (!currentTab || tabId === currentTab.id) {
+        if (changeInfo.status === 'complete' || changeInfo.url) {
+          fetchCurrentTab();
+        }
       }
     };
 
@@ -34,7 +38,7 @@ export default function useCurrentTab() {
       chrome.tabs.onActivated.removeListener(handleActivated);
       chrome.tabs.onUpdated.removeListener(handleUpdated);
     };
-  }, [fetchCurrentTab]);
+  }, [fetchCurrentTab, currentTab?.id]);
 
   return currentTab;
 }
