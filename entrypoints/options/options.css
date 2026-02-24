@@ -1,37 +1,60 @@
 body {
-    font-family: Arial, sans-serif;
     padding: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
-h1 {
-    color: #0056b3;
+.options-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.options-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.options-header h1 {
+    margin: 0;
+    color: var(--brand-blue);
+}
+
+.options-header .logo {
+    width: 48px;
+    height: 48px;
 }
 
 .input-section {
     margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
 }
 
 input[type="text"] {
-    width: 300px;
-    padding: 8px;
-    margin-right: 10px;
-    border: 1px solid #ddd;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    font-size: 1rem;
 }
 
 button {
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
+    padding: 10px 20px;
+    background-color: var(--brand-blue);
+    color: var(--btn-text-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
 }
 
 ul {
@@ -40,10 +63,10 @@ ul {
 }
 
 li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 5px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    margin-bottom: 8px;
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
@@ -51,14 +74,22 @@ li {
 }
 
 .remove-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
+    background-color: var(--error-color);
+    color: var(--btn-text-color);
+    padding: 6px 12px;
+    font-size: 0.9rem;
 }
 
-.remove-btn:hover {
-    background-color: #c82333;
+.feedback-message {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.feedback-message.success {
+    color: var(--brand-green);
+}
+
+.feedback-message.error {
+    color: var(--error-color);
 }
