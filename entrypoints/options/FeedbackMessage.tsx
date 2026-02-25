@@ -20,9 +20,7 @@ const FeedbackMessage: React.FC<FeedbackMessageProps> = ({ message }) => {
   return (
     <span
       id="feedbackMessage"
-      style={{
-        color: message.type === 'error' ? 'red' : 'green',
-      }}
+      className={`feedback-message ${message.type}`}
     >
       {message.text}
     </span>

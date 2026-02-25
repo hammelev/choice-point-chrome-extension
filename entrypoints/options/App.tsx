@@ -1,4 +1,5 @@
 import useBlockedWebsites from "~/hooks/useBlockedWebsites";
+import logo from "@/assets/images/logo.png";
 import AddWebsiteForm from "./AddWebsiteForm";
 import FeedbackMessage from "./FeedbackMessage";
 import BlockedWebsitesList from "./BlockedWebsitesList";
@@ -13,11 +14,14 @@ export default function App() {
     }
 
     return (
-        <>
-            <h1>Blocked Websites</h1>
+        <div className="options-container">
+            <header className="options-header">
+                <h1>Blocked Websites</h1>
+                <img src={logo} alt="Choice Point Logo" className="logo" />
+            </header>
             <AddWebsiteForm onAddWebsite={addWebsite} />
             <FeedbackMessage message={feedback} />
             <BlockedWebsitesList websites={blockedWebsites} onRemoveWebsite={handleRemoveBlockedWebsite} />
-        </>
+        </div>
     )
 }

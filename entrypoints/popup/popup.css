@@ -1,5 +1,4 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 }
@@ -10,7 +9,8 @@ body {
   justify-content: center;
   align-items: flex-start;
   min-width: 300px;
-  background-color: #ffffff;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .popup-container {
@@ -22,10 +22,22 @@ body {
   gap: 16px;
 }
 
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+}
+
 h1 {
   margin: 0;
   font-size: 1.5rem;
-  color: #0056b3;
+  color: var(--brand-blue);
 }
 
 .status-section {
@@ -33,14 +45,14 @@ h1 {
   flex-direction: column;
   gap: 8px;
   padding: 12px;
-  background-color: #f8f9fa;
+  background-color: var(--surface-color);
   border-radius: 8px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
 }
 
 .current-url {
   font-size: 0.9rem;
-  color: #495057;
+  color: var(--secondary-text-color);
   word-break: break-all;
   margin: 0;
   max-height: 3.6em;
@@ -56,41 +68,40 @@ h1 {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: opacity 0.2s;
+  color: var(--btn-text-color);
+}
+
+.action-btn:hover {
+  opacity: 0.9;
 }
 
 .block-btn {
-  background-color: #007bff;
-  color: white;
-}
-
-.block-btn:hover {
-  background-color: #0056b3;
+  background-color: var(--brand-blue);
 }
 
 .unblock-btn {
-  background-color: #dc3545;
-  color: white;
-}
-
-.unblock-btn:hover {
-  background-color: #bd2130;
+  background-color: var(--error-color);
 }
 
 .footer-section {
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var(--border-color);
   padding-top: 12px;
 }
 
 .options-btn {
   background-color: transparent;
-  color: #6c757d;
-  border: 1px solid #6c757d;
+  color: var(--secondary-text-color);
+  border: 1px solid var(--border-color);
   width: 100%;
   padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .options-btn:hover {
-  background-color: #6c757d;
-  color: white;
+  background-color: var(--border-color);
+  color: var(--text-color);
 }

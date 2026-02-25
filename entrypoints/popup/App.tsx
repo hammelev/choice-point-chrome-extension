@@ -1,4 +1,5 @@
 import { useMemo, useCallback } from 'react';
+import logo from "@/assets/images/logo.png";
 import useBlockedWebsites from "~/hooks/useBlockedWebsites";
 import useCurrentTab from "~/hooks/useCurrentTab";
 import { normalizeUrl } from "~/utils/normalizeUrl";
@@ -46,7 +47,10 @@ function App() {
   if (currentTab === undefined) {
     return (
       <div className="popup-container">
-        <h1>Choice Point</h1>
+        <header className="popup-header">
+          <h1>Choice Point</h1>
+          <img src={logo} alt="Choice Point Logo" className="logo" />
+        </header>
         <div className="status-section">
           <p>Loading current tab...</p>
         </div>
@@ -56,7 +60,10 @@ function App() {
 
   return (
     <div className="popup-container">
-      <h1>Choice Point</h1>
+      <header className="popup-header">
+        <h1>Choice Point</h1>
+        <img src={logo} alt="Choice Point Logo" className="logo" />
+      </header>
 
       <div className="status-section">
         {isBlockable ? (
