@@ -11,10 +11,6 @@
   --error-color: #dc2626;
   --btn-text-color: #ffffff;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,6 +30,7 @@
 
 body {
   margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
