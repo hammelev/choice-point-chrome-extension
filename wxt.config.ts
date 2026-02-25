@@ -6,13 +6,7 @@ export default defineConfig({
   outDir: "dist",
   manifest: {
     host_permissions: ["<all_urls>"],
-    permissions: [
-      "declarativeNetRequestWithHostAccess",
-      "storage",
-      "alarms",
-      "tabs",
-      "scripting",
-    ],
+    permissions: ["declarativeNetRequestWithHostAccess", "storage", "tabs"],
     action: {
       default_icon: {
         16: "icon/icon16.png",
