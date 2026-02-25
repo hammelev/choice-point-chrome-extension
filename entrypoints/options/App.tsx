@@ -16,8 +16,8 @@ export default function App() {
     return (
         <div className="options-container">
             <header className="options-header">
-                <img src={logo} alt="Choice Point Logo" className="logo" />
                 <h1>Blocked Websites</h1>
+                <img src={logo} alt="Choice Point Logo" className="logo" />
             </header>
             <AddWebsiteForm onAddWebsite={addWebsite} />
             <FeedbackMessage message={feedback} />
